@@ -192,6 +192,15 @@
         .nav-logo {
             color: #ffffff !important;
         }
+		/* Only affect the Home section heading */
+			#page-home h1 {
+			color: #374151 !important; /* gray-700 in light mode */
+		}
+
+		html.dark #page-home h1 {
+		color: #cbd5e1 !important; /* slate-300 in dark mode */
+		}
+
 		
     </style>
 </head>
@@ -236,7 +245,7 @@
         <section id="page-home" class="page-section active">
             <div class="home-bubble rounded-xl p-8 md:p-16 text-center">
                 <img src="profile.jpg" alt="Akhil Kornala" class="w-40 h-60 md:w-48 md:h-48 rounded-full mx-auto mb-6 shadow-2xl object-cover ring-4 ring-white dark:ring-slate-800" onerror="this.onerror=null;this.src='https://placehold.co/200x200/E2E8F0/475569?text=AK';">
-                <h1 class="text-4xl md:text-5xl font-bold text-black dark:text-white mb-2">Akhil Kornala</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-700 dark:text-slate-300 mb-8 h-10">Akhil Kornala</h1>
                 <p class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-slate-300 mb-8 h-10">
     I am a <span id="typewriter" style="color: var(--brand-color);"></span>
 </p>
