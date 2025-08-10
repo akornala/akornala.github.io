@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhil Kornala | Business Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Typewriter Effect Library -->
+<script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <style>
+        :root {
+            /* NEW Darker Olive Green Color Palette */
+            --bg-light: #ffffff;
+            --bg-light-accent: #f0f5f0; /* Light Green accent */
+            --text-light-primary: #111827; /* Gray 900 (Near Black) */
+            --text-light-secondary: #374151; /* Gray 700 (Dark Gray) */
+            --border-light: #e2e8f0; /* Slate 200 */
+            --brand-color: #243933; /* Dark Olive Green */
+
+            /* Dark Mode Palette */
+            --bg-dark: #1c1917; /* Dark Stone */
+            --bg-dark-accent: #292524; /* Darker Stone */
+            --text-dark-primary: #f1f5f9; /* Slate 100 */
+            --text-dark-secondary: #cbd5e1; /* Slate 300 */
+            --border-dark: #44403c; /* Stone 700 */
+        }
+
+        html.dark {
+            --bg-light: var(--bg-dark);
+            --bg-light-accent: var(--bg-dark-accent);
+            --text-light-primary: var(--text-dark-primary);
+            --text-light-secondary: var(--text-dark-secondary);
+            --border-light: var(--border-dark);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* For headings in dark mode */
+        html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+            color: var(--text-dark-primary); /* White color for headings in dark mode */
+        }
+
+        /* For general text in dark mode */
+        html.dark p, html.dark li, html.dark a {
+            color: var(--text-dark-secondary); /* Light gray text in dark mode */
+        }
+
+        /* For headings in light mode */
+        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) h4, html:not(.dark) h5, html:not(.dark) h6 {
+            color: var(--text-light-primary); /* Dark color for headings in light mode */
+        }
+
+        /* For general text in light mode */
+        html:not(.dark) p, html:not(.dark) li, html:not(.dark) a {
+            color: var(--text-light-secondary); /* Dark gray text in light mode */
+        }
+
+        /* Header Ribbon (for active section highlighting) */
+        .nav-link {
+            color: #ffffff; /* Default white text in ribbon */
+            opacity: 0.8;
+        }
+
+        html.dark .nav-link {
+            color: #ffffff; /* White text for dark mode */
+        }
+
+        /* Light mode - make text visible */
+        html:not(.dark) .nav-link {
+            color: #ffffff; /* White text for ribbon in light mode */
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .nav-link.active{
+		opacity:1;
+		font-weight:600;
+		border-bottom:2px solid #ffffff; /* visible in both themes */
+		}
+		html.dark .nav-link.active{
+			border-bottom:2px solid #ffffff;
+		}
+
+
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        .timeline-container::before {
+            content: ''; position: absolute; left: 50%;
+            transform: translateX(-50%); top: 0; bottom: 0;
+            width: 2px; background-color: var(--border-light);
+        }
+        
+        .timeline-entry {
+            position: relative;
+        }
+        .timeline-entry::after {
+            content: '';
+            position: absolute;
+            top: 2rem; 
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .timeline-entry-right::after {
+            left: 50%;
+            transform: translateX(-1px);
+            border-left: 8px solid var(--brand-color);
+        }
+
+        .timeline-entry-left::after {
+            right: 50%;
+            transform: translateX(1px);
+            border-right: 8px solid var(--brand-color);
+        }
+
+        .card {
+            background-color: var(--bg-light-accent);
+            border: 1px solid var(--border-light);
+        }
+
+        html.dark .card {
+            background-color: var(--bg-dark-accent);
+            border-color: var(--border-dark);
+        }
+
+        .social-icon:hover {
+            color: var(--brand-color);
+            transform: scale(1.1);
+        }
+
+        .skill-icon {
+            color: var(--brand-color);
+        }
+
+        /* Skills bubble gradient */
+        .home-bubble {
+            background: linear-gradient(180deg,#ffffff 0%, #edf7f1 70%); /* Lighter gradient */
+        }
+
+        html.dark .home-bubble {
+            background: linear-gradient(180deg,#1f2a26 0%, #0f1715 70%); /* Darker gradient for dark mode */
+        }
+
+        .tag {
+            background-color: #d1e7dd; /* Light Green Tag */
+            color: #162a25; /* Dark Green Tag Text */
+        }
+
+        html.dark .tag {
+            background-color: #162a25; /* Dark Green Tag */
+            color: #a3e635; /* Lime 400 */
+        }
+
+        /* Certifications Section */
+        #certifications {
+            background-color: var(--bg-light-accent);
+            padding: 2rem 0;
+        }
+
+        #certifications h3 {
+            color: var(--text-light-primary);
+        }
+
+        .certification-card {
+            background-color: var(--bg-light-accent);
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .Typewriter__cursor {
+            color: var(--brand-color);
+        }
+
+        html.dark #typewriter {
+            color: var(--text-dark-primary) !important; /* White text for dark mode */
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header style="background-color: #243933;" class="dark:bg-stone-900/80 backdrop-blur-lg sticky top-0 z-50 border-b border-lime-900 dark:border-stone-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-white dark:text-white nav-logo">Akhil Kornala</a>
+            <div class="hidden md:flex items-center space-x-8" id="desktop-menu">
+                <a href="#home" class="nav-link active pb-2">Home</a>
+                <a href="#skills" class="nav-link pb-2">Skills</a>
+                <a href="#experience" class="nav-link pb-2">Experience</a>
+                <a href="#education" class="nav-link pb-2">Education</a>
+                <a href="#projects" class="nav-link pb-2">Projects</a>
+                <a href="#certifications" class="nav-link pb-2">Certifications</a>
+            </div>
+            <div class="flex items-center">
+                 <button id="theme-toggle" class="text-white dark:text-slate-300 hover:text-lime-200 dark:hover:text-lime-400 focus:outline-none text-xl p-2 mr-4">
+                    <i class="fas fa-sun" id="theme-toggle-light-icon"></i>
+                    <i class="fas fa-moon hidden" id="theme-toggle-dark-icon"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-white dark:text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" style="background-color: #243933;" class="hidden md:hidden px-6 pb-4 space-y-2 dark:bg-stone-900">
+            <a href="#home" class="block text-white dark:text-slate-300 text-center py-2">Home</a>
+            <a href="#skills" class="block text-white dark:text-slate-300 text-center py-2">Skills</a>
+            <a href="#experience" class="block text-white dark:text-slate-300 text-center py-2">Experience</a>
+            <a href="#education" class="block text-white dark:text-slate-300 text-center py-2">Education</a>
+            <a href="#projects" class="block text-white dark:text-slate-300 text-center py-2">Projects</a>
+            <a href="#certifications" class="block text-white dark:text-slate-300 text-center py-2">Certifications</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16">
+
+        <!-- Home Section -->
+        <section id="page-home" class="page-section active">
+            <div class="home-bubble rounded-xl p-8 md:p-16 text-center">
+                <img src="profile.jpg" alt="Akhil Kornala" class="w-40 h-60 md:w-48 md:h-48 rounded-full mx-auto mb-6 shadow-2xl object-cover ring-4 ring-white dark:ring-slate-800" onerror="this.onerror=null;this.src='https://placehold.co/200x200/E2E8F0/475569?text=AK';">
+                <h1 class="text-4xl md:text-5xl font-bold text-black dark:text-white mb-2">Akhil Kornala</h1>
+                <p class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-slate-300 mb-8 h-10">
+    I am a <span id="typewriter" style="color: var(--brand-color);"></span>
+</p>
+                <p class="text-lg text-gray-800 dark:text-slate-300 max-w-3xl mx-auto mb-8">
+                    I'm a results-oriented analytics professional with a Master's in Business Analytics, specializing in financial planning, modeling, and reporting. I translate data into insights, and insights into action.
+                </p>
+                <div class="flex justify-center items-center space-x-6 text-3xl">
+                    <a href="mailto:akhilkornala@gmail.com" class="text-gray-500 dark:text-slate-400 transition-all social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/akhilkornala" target="_blank" class="text-gray-500 dark:text-slate-400 transition-all social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/akornala" target="_blank" class="text-gray-500 dark:text-slate-400 transition-all social-icon"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="page-skills" class="page-section">
+            <h2 class="text-4xl font-bold text-center mb-12 text-black dark:text-white">Skills</h2>
+            <div class="max-w-5xl mx-auto space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8 text-black dark:text-white">Data & Visualization</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-chart-pie text-5xl skill-icon mb-2"></i><p class="font-semibold">Power BI</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-database text-5xl skill-icon mb-2"></i><p class="font-semibold">SQL</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fab fa-python text-5xl skill-icon mb-2"></i><p class="font-semibold">Python</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-file-excel text-5xl skill-icon mb-2"></i><p class="font-semibold">Excel</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-chart-line text-5xl skill-icon mb-2"></i><p class="font-semibold">Tableau</p></div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8 text-black dark:text-white">Financial Expertise</h3>
+                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-calculator text-5xl skill-icon mb-2"></i><p class="font-semibold">Financial Analysis</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-coins text-5xl skill-icon mb-2"></i><p class="font-semibold">Financial Modeling</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-book text-5xl skill-icon mb-2"></i><p class="font-semibold">Financial Accounting</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-tasks text-5xl skill-icon mb-2"></i><p class="font-semibold">Auditing</p></div>
+                        <div class="text-center p-4 card rounded-lg"><i class="fas fa-file-invoice-dollar text-5xl skill-icon mb-2"></i><p class="font-semibold">Budgeting</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="page-experience" class="page-section">
+            <h2 class="text-4xl font-bold text-center mb-12 text-black dark:text-white">Experience</h2>
+            <div class="relative timeline-container max-w-4xl mx-auto">
+                <div class="timeline-entry timeline-entry-right grid md:grid-cols-2 gap-x-12 mb-8">
+                    <div class="md:text-right"><p class="font-semibold text-gray-600 dark:text-slate-400">Jan 2025 - May 2025</p></div>
+                    <div class="card p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-black dark:text-white">Business Analyst Intern</h3>
+                        <p class="font-medium text-lime-700 dark:text-lime-400 mb-3">Advanced IT Solutions Inc.</p>
+                        <ul class="list-disc list-inside text-gray-800 dark:text-slate-300 space-y-2">
+                            <li>Automated financial reporting by designing and deploying interactive Power BI dashboards, reducing manual reporting time by 30%.</li>
+                            <li>Extracted and analyzed large datasets using SQL to identify key performance indicators and provided actionable insights for process improvement.</li>
+                            <li>Ensured data integrity by reviewing and updating metadata, contributing to a 15% improvement in data consistency across departments.</li>
+                            <li>Operated within an Agile framework to support system testing and documented functional specifications for new tool enhancements.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-entry timeline-entry-left grid md:grid-cols-2 gap-x-12 mb-8">
+                    <div class="card p-6 rounded-lg shadow-sm md:col-start-1 md:row-start-1">
+                        <h3 class="text-xl font-bold text-black dark:text-white">Analyst</h3>
+                        <p class="font-medium text-lime-700 dark:text-lime-400 mb-3">Brahma Reddy and Co.</p>
+                        <ul class="list-disc list-inside text-gray-800 dark:text-slate-300 space-y-2">
+                            <li>Led statutory and internal audits for clients in manufacturing, healthcare, and retail, improving financial compliance and accuracy.</li>
+                            <li>Conducted in-depth variance analysis and ledger scrutiny, identifying and rectifying reporting anomalies to enhance financial statement reliability.</li>
+                            <li>Prepared and reviewed financial statements, MIS reports, and audit documentation in alignment with Indian Accounting Standards (Ind-AS).</li>
+                            <li>Developed and delivered training on audit procedures and Excel-based analysis, upskilling a team of 5 junior members.</li>
+                        </ul>
+                    </div>
+                    <div class="md:text-left"><p class="font-semibold text-gray-600 dark:text-slate-400">Feb 2020 - Feb 2023</p></div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="page-education" class="page-section">
+            <h2 class="text-4xl font-bold text-center mb-12 text-black dark:text-white">Education</h2>
+            <div class="relative timeline-container max-w-4xl mx-auto">
+                <div class="timeline-entry timeline-entry-right grid md:grid-cols-2 gap-x-12 mb-8">
+                    <div class="md:text-right"><p class="font-semibold text-gray-600 dark:text-slate-400">Aug 2023 - May 2025</p></div>
+                    <div class="card p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-black dark:text-white">Master of Science, Business Analytics</h3>
+                        <p class="font-medium text-lime-700 dark:text-lime-400 mb-3">Kent State University</p>
+                        <p class="font-semibold text-black dark:text-white">Relevant Coursework:</p>
+                        <p class="text-gray-800 dark:text-slate-300">Data Visualization, Predictive Analytics, Database Management, Financial Analytics, Machine Learning Concepts.</p>
+                    </div>
+                </div>
+                <div class="timeline-entry timeline-entry-left grid md:grid-cols-2 gap-x-12 mb-8">
+                    <div class="card p-6 rounded-lg shadow-sm md:col-start-1 md:row-start-1">
+                        <h3 class="text-xl font-bold text-black dark:text-white">Bachelor of Commerce, Accounting and Finance</h3>
+                        <p class="font-medium text-lime-700 dark:text-lime-400 mb-3">Osmania University, Hyderabad</p>
+                        <p class="font-semibold text-black dark:text-white">Relevant Coursework:</p>
+                        <p class="text-gray-800 dark:text-slate-300">Financial Accounting, Corporate Law, Cost Accounting, Business Statistics, Auditing.</p>
+                    </div>
+                    <div class="md:text-left"><p class="font-semibold text-gray-600 dark:text-slate-400">Jul 2017 - May 2020</p></div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="page-projects" class="page-section">
+            <h2 class="text-4xl font-bold text-center mb-12 text-black dark:text-white">Projects</h2>
+             <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                <!-- Project 1 -->
+                <div class="card rounded-lg shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-2xl font-bold mb-2 text-black dark:text-white">GPT-Powered Financial Report Analyzer</h3>
+                        <p class="text-gray-800 dark:text-slate-300 mb-4">Built a smart financial document analyzer using GPT-4, LangChain, and FAISS. Users can upload any 10-K report, ask natural language questions, and get accurate, cited answers.</p>
+                        <div class="mb-4">
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">LangChain</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">FAISS</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-slate-200 dark:bg-slate-700/50">
+                        <a href="https://github.com/akornala/financial-analyzer" target="_blank" class="font-semibold text-lime-700 dark:text-lime-400 hover:underline">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="card rounded-lg shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-2xl font-bold mb-2 text-black dark:text-white">Instacart Inventory Optimization</h3>
+                        <p class="text-gray-800 dark:text-slate-300 mb-4">Developed an end-to-end analytics solution to optimize inventory and sales performance using time series forecasting (Holt-Winters), EOQ modeling, and ABC analysis on real-world retail data.</p>
+                        <div class="mb-4">
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Forecasting</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Tableau</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Business Analytics</span>
+                        </div>
+                    </div>
+                     <div class="p-6 bg-slate-200 dark:bg-slate-700/50">
+                        <a href="https://github.com/akornala/Instacart-Inventory-Optimization" target="_blank" class="font-semibold text-lime-700 dark:text-lime-400 hover:underline">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                 <div class="card rounded-lg shadow-sm overflow-hidden flex flex-col lg:col-span-2">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-2xl font-bold mb-2 text-black dark:text-white">Telco Customer Churn Prediction</h3>
+                        <p class="text-gray-800 dark:text-slate-300 mb-4">Built an ML pipeline to predict customer churn using Random Forest and SMOTE. The project includes a daily prediction simulation, revenue-at-risk estimation, and an interactive Streamlit dashboard.</p>
+                        <div class="mb-4">
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Scikit-Learn</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Streamlit</span>
+                            <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Feature Engineering</span>
+                        </div>
+                    </div>
+                     <div class="p-6 bg-slate-200 dark:bg-slate-700/50 flex space-x-6">
+                        <a href="https://github.com/akornala/Telco-Churn-Prediction" target="_blank" class="font-semibold text-lime-700 dark:text-lime-400 hover:underline">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a>
+                        <a href="https://telco-churn-prediction-azjinmnq9dbjndgupnb2yq.streamlit.app" target="_blank" class="font-semibold text-lime-700 dark:text-lime-400 hover:underline">Live Dashboard <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="page-certifications" class="page-section">
+            <h2 class="text-4xl font-bold text-center mb-12 text-black dark:text-white">Licenses & Certifications</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                <!-- IBM Data Analyst -->
+                <div class="card rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-black dark:text-white">IBM Data Analyst Capstone Project</h3>
+                    <p class="font-medium text-gray-600 dark:text-slate-400 mb-3">IBM | Issued Jun 2025</p>
+                    <div class="flex flex-wrap">
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Data Analysis</span>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Data Visualization</span>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Python</span>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Excel</span>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Power BI</span>
+                    </div>
+                </div>
+                <!-- Ultimate MySQL Bootcamp -->
+                <div class="card rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-black dark:text-white">The Ultimate MySQL Bootcamp</h3>
+                    <p class="font-medium text-gray-600 dark:text-slate-400 mb-3">Udemy | Issued Jun 2025</p>
+                    <div>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">SQL</span>
+                    </div>
+                </div>
+                <!-- Data Analyst Certification -->
+                <div class="card rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-black dark:text-white">Data Analyst Certification</h3>
+                    <p class="font-medium text-gray-600 dark:text-slate-400 mb-3">OneRoadmap | Issued May 2025</p>
+                    <div>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Data Analysis</span>
+                    </div>
+                </div>
+                <!-- Image Modeling with Keras -->
+                <div class="card rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-black dark:text-white">Image Modeling with Keras</h3>
+                    <p class="font-medium text-gray-600 dark:text-slate-400 mb-3">DataCamp | Issued Feb 2024</p>
+                    <div>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Keras</span>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Image Modeling</span>
+                    </div>
+                </div>
+                 <!-- Deep Learning in Python -->
+                <div class="card rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-black dark:text-white">Introduction to Deep Learning in Python</h3>
+                    <p class="font-medium text-gray-600 dark:text-slate-400 mb-3">DataCamp | Issued Feb 2024</p>
+                    <div>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Python</span>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">Deep Learning</span>
+                    </div>
+                </div>
+                 <!-- TensorFlow in Python -->
+                <div class="card rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-black dark:text-white">Introduction to TensorFlow in Python</h3>
+                    <p class="font-medium text-gray-600 dark:text-slate-400 mb-3">DataCamp | Issued Feb 2024</p>
+                    <div>
+                        <span class="tag text-sm font-semibold mr-2 mb-2 inline-block px-2.5 py-0.5 rounded-full">TensorFlow</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-stone-800 text-gray-600 dark:text-slate-400 text-center py-6 mt-12">
+        <p>&copy; 2025 Akhil Kornala. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggler
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+            // Function to apply theme
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                }
+            };
+
+            // Check for saved theme in localStorage or system preference
+            const savedTheme = localStorage.getItem('color-theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else {
+                applyTheme(systemPrefersDark ? 'dark' : 'light');
+            }
+
+            // Theme toggle button event listener
+            themeToggleBtn.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const newTheme = isDark ? 'light' : 'dark';
+                localStorage.setItem('color-theme', newTheme);
+                applyTheme(newTheme);
+            });
+
+            // Page Navigation Logic
+            const pageSections = document.querySelectorAll('.page-section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLogo = document.querySelector('.nav-logo');
+            // Initialize Typewriter Effect
+const typewriter = new Typewriter(document.getElementById('typewriter'), {
+    loop: true,
+    delay: 75,
+});
+
+typewriter
+    .pauseFor(1000)
+    .typeString('Financial Analyst')
+    .pauseFor(2000)
+    .deleteAll()
+    .typeString('Business Analyst')
+    .pauseFor(2000)
+    .deleteAll()
+    .typeString('Data Analyst')
+    .pauseFor(2000)
+    .deleteAll()
+    .typeString('Business Intelligence Analyst')
+    .pauseFor(2000)
+    .start();
+
+            function showPage(pageId) {
+                pageSections.forEach(section => section.classList.remove('active'));
+                const targetPage = document.getElementById('page-' + pageId);
+                if (targetPage) targetPage.classList.add('active');
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + pageId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                mobileMenu.classList.add('hidden');
+            }
+
+            document.querySelector('#desktop-menu').addEventListener('click', function(e) {
+                if (e.target.classList.contains('nav-link')) {
+                    e.preventDefault();
+                    showPage(e.target.getAttribute('href').substring(1));
+                }
+            });
+            
+            mobileMenu.addEventListener('click', function(e) {
+                 if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    showPage(e.target.getAttribute('href').substring(1));
+                }
+            });
+
+            navLogo.addEventListener('click', e => { e.preventDefault(); showPage('home'); });
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        });
+    </script>
+</body>
+</html>
