@@ -263,8 +263,19 @@
         html.dark .email-dropdown-content::after {
             border-top-color: var(--bg-dark-accent);
         }
+		/* Make all social icons (mail, LinkedIn, GitHub) the same base color */
+		.social-icon {
+			color: #6b7280 !important;   /* gray-500 */
+			}
+		html.dark .social-icon {
+			color: #94a3b8 !important;   /* slate-400 */
+			}
+		/* Keep your hover style */
+		.social-icon:hover {
+			color: var(--brand-color) !important;
+			transform: scale(1.1);
+		}
 
-		
     </style>
 </head>
 <body class="antialiased">
